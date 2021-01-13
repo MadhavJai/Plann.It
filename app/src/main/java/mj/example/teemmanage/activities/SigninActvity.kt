@@ -1,16 +1,17 @@
-package mj.example.teemmanage
+package mj.example.teemmanage.activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_signin.*
+import mj.example.teemmanage.R
 
-class SignupActivity : AppCompatActivity() {
+class SigninActvity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_signin)
 
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -32,7 +33,7 @@ class SignupActivity : AppCompatActivity() {
      */
     private fun setupActionBar() {
 
-        setSupportActionBar(toolbar_sign_up_activity)
+        setSupportActionBar(toolbar_sign_in_activity)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -40,6 +41,6 @@ class SignupActivity : AppCompatActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
         }
 
-        toolbar_sign_up_activity.setNavigationOnClickListener { onBackPressed() }
+        toolbar_sign_in_activity.setNavigationOnClickListener { onBackPressed() }
     }
 }

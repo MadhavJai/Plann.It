@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "378650626875",
+    "project_id": "plann-it-e3d5b",
+    "storage_bucket": "plann-it-e3d5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378650626875:android:6d3c5836cf5214933e051e",
+        "android_client_info": {
+          "package_name": "mj.example.teemmanage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378650626875-no665t8a9pfb5d1mf2hujrrgr4g8iu0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNXK-kT1WS7rTSgVu9ZzS8yr00yfSbm_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378650626875-no665t8a9pfb5d1mf2hujrrgr4g8iu0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,8 @@
-package mj.example.teemmanage
+package mj.example.teemmanage.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import mj.example.teemmanage.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
