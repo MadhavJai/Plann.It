@@ -8,8 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!--TODO (Step 2: Add this no actionBar style which we will be using in the manifest file for applying the theme to activity tag. This style tags are added automatically when you create a Basic Activity instead of Empty Activity.)-->
-    <!--START-->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--TODO (Step 5: Added the dimen values in this file.)-->
-    <!--START-->
     <dimen name="splash_screen_title_text_size">70sp</dimen>
-    <!--END-->
     <dimen name="intro_screen_title_text_size">40sp</dimen>
     <dimen name="intro_screen_title_text_marginTop">40dp</dimen>
     <dimen name="intro_screen_image_marginTop">30dp</dimen>
