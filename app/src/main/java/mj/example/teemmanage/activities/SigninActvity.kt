@@ -14,6 +14,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_signin.*
 import mj.example.teemmanage.R
+import mj.example.teemmanage.firebase.FirestoreClass
+import mj.example.teemmanage.models.User
 
 class SigninActvity : BaseActivity() {
 
@@ -80,9 +82,10 @@ class SigninActvity : BaseActivity() {
                         hideProgressDialog()
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("SIGNIN", "signInWithEmail:success")
-                            val user = auth.currentUser
-                            startActivity(Intent(this, MainActivity::class.java))
+//                            Log.d("SIGNIN", "signInWithEmail:success")
+//                            val user = auth.currentUser
+//                            startActivity(Intent(this, MainActivity::class.java))
+                            FirestoreClass().signinUser(this)
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("SIGNIN", "signInWithEmail:failure", task.exception)
@@ -109,6 +112,13 @@ class SigninActvity : BaseActivity() {
                 true
             }
         }
+    }
+
+    fun signinSuccess (user: User){
+        hideProgressDialog()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+
     }
 
     private fun setupActionBar() {

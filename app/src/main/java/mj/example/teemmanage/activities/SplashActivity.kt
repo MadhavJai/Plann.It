@@ -11,6 +11,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_splash.*
 import mj.example.teemmanage.R
+import mj.example.teemmanage.firebase.FirestoreClass
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,15 @@ class SplashActivity : AppCompatActivity() {
 
         // Adding the handler to after the a task after some delay.
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+
+            var currentUserID = FirestoreClass().getCurrentUserID()
+            if(currentUserID.isNotEmpty()){
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            else{
+                startActivity(Intent(this, IntroActivity::class.java))
+            }
+            //startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
             finish() // Call this when your activity is done and should be closed.
         }, 2500)
 
