@@ -61,12 +61,11 @@ class SignupActivity : BaseActivity() {
 
     }
 
-    /**
-     * A function to register a user to th app using firebase
-     */
+    /** function to register user to firebase **/
     private fun registerUser() {
 
         // trims any extra space in input for name, email and password
+        // NOTE: This will cause problems if user intended a space in password
         val name: String = et_name.text.toString().trim { it <= ' ' }
         val email: String = et_email.text.toString().trim { it <= ' ' }
         val password: String = et_password.text.toString().trim { it <= ' ' }
@@ -89,13 +88,13 @@ class SignupActivity : BaseActivity() {
 
                             Toast.makeText(
                                 this@SignupActivity,
-                                "$name You have successfully registered with email: $registeredEmail.",
+                                "Hello $name, you have successfully registered with the email: $registeredEmail.",
                                 Toast.LENGTH_SHORT
                             ).show()
 
                             /**
-                             * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
-                             * and send him to Intro Screen for Sign-In
+                             * When new user is registered, they are automatically signed-in. So we sign out the user from firebase and send user
+                             * back to intro screen where they can log in again.
                              */
 
                             FirebaseAuth.getInstance().signOut()
@@ -104,7 +103,7 @@ class SignupActivity : BaseActivity() {
                         } else {
                             Toast.makeText(
                                 this@SignupActivity,
-                                task.exception!!.message,
+                                "Registration failed: ",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -113,18 +112,19 @@ class SignupActivity : BaseActivity() {
 
     }
 
+    /** function to validate user input **/
     private fun validateForm(name: String, email: String, password: String): Boolean {
         return when {
             TextUtils.isEmpty(name) -> {
-                showErrorSnackBar("Please enter name.")
+                showErrorSnackBar("Please enter your display name.")
                 false
             }
             TextUtils.isEmpty(email) -> {
-                showErrorSnackBar("Please enter email.")
+                showErrorSnackBar("Please enter am email address.")
                 false
             }
             TextUtils.isEmpty(password) -> {
-                showErrorSnackBar("Please enter password.")
+                showErrorSnackBar("Please enter a password.")
                 false
             }
             else -> {
