@@ -26,7 +26,7 @@ class SigninActvity : BaseActivity() {
         auth = Firebase.auth
 
         /** sign out user **/
-        auth.signOut()
+//        auth.signOut()
 
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

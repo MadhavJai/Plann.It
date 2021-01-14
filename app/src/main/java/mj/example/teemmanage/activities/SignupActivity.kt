@@ -15,6 +15,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import kotlinx.android.synthetic.main.activity_signup.*
 import mj.example.teemmanage.R
+import mj.example.teemmanage.firebase.FirestoreClass
+import mj.example.teemmanage.models.User
 
 class SignupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,19 @@ class SignupActivity : BaseActivity() {
         btn_sign_up.setOnClickListener{
             registerUser()
         }
+    }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(
+            this@SignupActivity,
+            "You have successfully registered.",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        hideProgressDialog()
+
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     /**
@@ -76,30 +91,16 @@ class SignupActivity : BaseActivity() {
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
 
-                        hideProgressDialog()
-
                         // If the registration is successfully done
                         if (task.isSuccessful) {
-
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
                             // Registered Email
                             val registeredEmail = firebaseUser.email!!
+                            val user = User(firebaseUser.uid, name, registeredEmail)
 
-                            Toast.makeText(
-                                this@SignupActivity,
-                                "Hello $name, you have successfully registered with the email: $registeredEmail.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            FirestoreClass().registerUser(this, user)
 
-                            /**
-                             * When new user is registered, they are automatically signed-in. So we sign out the user from firebase and send user
-                             * back to intro screen where they can log in again.
-                             */
-
-                            FirebaseAuth.getInstance().signOut()
-                            // Finish the Sign-Up Screen
-                            finish()
                         } else {
                             Toast.makeText(
                                 this@SignupActivity,
