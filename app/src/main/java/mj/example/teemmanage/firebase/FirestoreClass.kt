@@ -1,10 +1,12 @@
 package mj.example.teemmanage.firebase
 
+import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
+import mj.example.teemmanage.activities.MainActivity
 import mj.example.teemmanage.activities.SigninActvity
 import mj.example.teemmanage.activities.SignupActivity
 import mj.example.teemmanage.models.User
@@ -26,18 +28,32 @@ class FirestoreClass {
             }
     }
 
-    fun signinUser(activity: SigninActvity){
+    fun signinUser(activity: Activity){
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserID())
             .get()
             .addOnSuccessListener { document ->
-                val loggedInUser = document.toObject(User::class.java)
-                if(loggedInUser!=null){
-                    activity.signinSuccess(loggedInUser)
+                val loggedInUser = document.toObject(User::class.java)!!
+                when(activity){
+                    is SigninActvity -> {
+                        activity.signinSuccess(loggedInUser)
+                    }
+                    is MainActivity -> {
+                        activity.updateNavigationUserDetails(loggedInUser)
+                    }
                 }
 
             }.addOnFailureListener{
+
                     e->
+                when(activity){
+                    is SigninActvity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is MainActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
                 Log.e("SIGN IN USER", "Error writing data", e)
             }
     }
